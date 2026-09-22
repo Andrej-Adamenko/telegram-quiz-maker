@@ -2,7 +2,7 @@
 
 ## Start here
 
-Read `PROJECT_CONTEXT.md` when starting a new task in this repository. It records the product decisions that are not apparent from code alone. Read `README.md` for usage, `FORMAT.md` before changing quiz input, and `DEPLOYMENT.md` before deployment work. Do not assume that a new chat has the previous conversation.
+Read `README.md` when starting a new task: it is the source of project purpose, accepted decisions, and implementation context. Read `FORMAT.md` before changing quiz input and `DEPLOYMENT.md` before deployment work. Review relevant GitHub Issues for unresolved questions, bugs, and planned work. Do not assume that a new chat has the previous conversation.
 
 Check the current Git state before editing. Treat `main` on the configured GitHub origin as the shared source of truth. Do not reintroduce obsolete history from an older checkout.
 
@@ -32,6 +32,18 @@ Read `.local/DEPLOYMENT.md` if present when working on the owner's deployment. I
 
 Never commit local operational notes, real owner identifiers, deployment endpoints, tokens, SSH keys, populated environment files, runtime databases, or logs. Publish an explicit file list. Do not print or copy token contents into chat. Keep one process per Telegram token and preserve state and credentials across releases.
 
-## Keep continuity current
+## Preserve context at every response
 
-Update `PROJECT_CONTEXT.md` when accepted product decisions or implementation state change. Record deployment-specific changes only in the ignored local note. Keep handoff notes concise and factual; do not copy conversation transcripts or treat an old status snapshot as a live check.
+At every response, check whether the conversation or work produced new context that must survive a new chat. Save important decisions, constraints, discoveries, unresolved questions, and changes in task status without waiting for a reminder. Keep the appropriate records current during the work and before the final response. If nothing meaningful changed, do not create artificial edits or duplicate records.
+
+Use these established locations:
+
+- `README.md`: project purpose, accepted product and architectural decisions, their relevant rationale, and current implementation context.
+- `AGENTS.md`: instructions for the model only. Do not turn it into a project history, transcript, task backlog, or duplicate of the README.
+- GitHub Issues in this repository: unresolved problems, open design questions, proposed improvements, and development plans. Check for an existing issue before creating one; update the same issue as work progresses. Distinguish a proposal from an approved decision and describe the expected result. Close issues only when resolved or explicitly declined. Do not invent work merely to populate the tracker.
+- Existing specialized documentation: keep the exact input contract in `FORMAT.md`/`quiz.schema.json` and deployment procedures in `DEPLOYMENT.md`. Link these sources rather than copying the same details into multiple files.
+- The ignored local deployment note: private connection and operational details that must never enter the public repository or public issues.
+
+When an issue produces an accepted lasting decision, summarize that decision in the README and link the issue as useful. Git commits and pull requests record implementation changes. Do not create a separate context, memory, backlog, TODO, or decision-file scheme by default. If a new category genuinely needs another home, explain the tradeoff and recommend an established convention to the user before introducing it.
+
+Persist content in English and preserve the repository's language policy. Keep records concise, factual, and consistent; do not copy chat transcripts or present old snapshots as live checks. If storage or publication fails, say what was saved locally and what remains unsynchronized. Do not claim that context was saved when it was only discussed.
