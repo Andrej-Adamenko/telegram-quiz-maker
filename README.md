@@ -2,7 +2,7 @@
 
 Run your own Telegram bot that turns a JSON file into a native quiz. Prepare the content yourself or with a language model, send the file to your bot, and receive a quiz with a correct answer and an explanation under the lightbulb. Optionally publish a longer explanation on Telegraph and place its link anywhere supported in the quiz.
 
-The bot uses Python 3.12+ and the standard library only. It does not call a model API. Its interface and operational messages are English; authored content supports any Unicode language and is not translated. The included Russian educational quiz demonstrates multilingual content, not a required language or topic.
+The bot uses Python 3.12+ and the standard library only. It does not call a model API. Its interface and operational messages are English; authored content supports any Unicode language and is not translated. The included Ukrainian educational quiz demonstrates multilingual content, not a required language or topic.
 
 ## How it works
 
@@ -95,6 +95,6 @@ Run one process per bot token. Long polling requires outbound HTTPS access to Te
 - [telegraph_pages.py](telegraph_pages.py): article rendering, publication, and caching.
 - [FORMAT.md](FORMAT.md): general authoring contract for people and models.
 - [PROMPT.md](PROMPT.md): optional educational quiz prompt.
-- [example-quiz.json](example-quiz.json): a Russian educational example.
+- [example-quiz.json](example-quiz.json): a Ukrainian educational example.
 - [tests/](tests/): offline standard-library tests.
 - [deploy/](deploy/): Debian/systemd installation and remote setup helpers.

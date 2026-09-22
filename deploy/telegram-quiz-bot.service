@@ -1,0 +1,37 @@
+[Unit]
+Description=Private Telegram quiz creator
+Wants=network-online.target
+After=network-online.target
+ConditionPathExists=/etc/telegram-quiz-bot/bot.env
+ConditionPathExists=/etc/telegram-quiz-bot/token.txt
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=quizbot
+Group=quizbot
+WorkingDirectory=/opt/telegram-quiz-bot/current
+EnvironmentFile=/etc/telegram-quiz-bot/bot.env
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecCondition=/usr/bin/python3 -c "import bot; bot.configuration()"
+ExecStart=/usr/bin/python3 /opt/telegram-quiz-bot/current/bot.py
+Restart=on-failure
+RestartSec=15
+TimeoutStopSec=90
+StateDirectory=telegram-quiz-bot
+StateDirectoryMode=0700
+UMask=0077
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/telegram-quiz-bot
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=telegram-quiz-bot
+LogRateLimitIntervalSec=30s
+LogRateLimitBurst=100
+
+[Install]
+WantedBy=multi-user.target

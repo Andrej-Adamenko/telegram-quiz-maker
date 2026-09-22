@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Telegram quiz",
+  "description": "One quiz on any topic, with Unicode content in any language. correct_option is one-based. The author controls field contents; the bot does not translate them or append English text. An optional telegraph page is published automatically and accessible to anyone with its URL. The bot replaces {{telegraph.url}} in poll text fields. Description and explanation always use MarkdownV2 and support [Link label]({{telegraph.url}}); only the visible label counts toward rendered length. Named links are not allowed in question or options. One page can be reused and combined with explanation_document. Telegram limits apply after substitution and formatting. The bot additionally checks unknown or unresolved markers, UTF-8 byte limits, and Telegraph content size.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "question", "options", "correct_option"],
+  "properties": {
+    "version": {"const": 1},
+    "question": {
+      "type": "string", "minLength": 1, "maxLength": 300,
+      "description": "Required Telegram Question field. Arbitrary author-supplied plain text in any language, up to 300 characters after substitution. A plain {{telegraph.url}} marker is allowed; named links are not."
+    },
+    "description": {
+      "type": "string", "maxLength": 262144,
+      "x-renderedMaxLength": 1024,
+      "description": "Optional author-supplied description in any language, always MarkdownV2. Maximum 1024 characters after substitution and Telegram parsing; source markup can be longer. Only the label of [Link label]({{telegraph.url}}) counts toward rendered length. Telegram validates formatting and final length."
+    },
+    "options": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "maxLength": 100, "description": "Plain text in any language, up to 100 characters after substitution. A plain {{telegraph.url}} marker is allowed; named links are not."}
+    },
+    "correct_option": {"type": "integer", "minimum": 1, "maximum": 12},
+    "explanation": {
+      "type": "string",
+      "maxLength": 262144,
+      "x-renderedMaxLength": 200,
+      "description": "Explanation shown after answering, in any language and always MarkdownV2: up to 200 characters and two LF line breaks after substitution and Telegram parsing. Only the label of [Link label]({{telegraph.url}}) counts toward rendered length. Source markup can be longer. Telegram validates formatting, final length, and line breaks. The author controls text and link placement."
+    },
+    "telegraph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "text"],
+      "description": "The bot automatically creates one public Telegraph page and replaces every {{telegraph.url}} marker in poll text fields with its URL. No manual page creation or actual URL is needed. When telegraph is provided, question, description, explanation, or at least one options item must contain this marker.",
+      "properties": {
+        "title": {
+          "type": "string", "minLength": 1, "maxLength": 256,
+          "description": "Title of the public Telegraph page, in the author's chosen language."
+        },
+        "text": {
+          "type": "string", "minLength": 1, "maxLength": 262144,
+          "description": "Full text in supported ordinary Markdown, not a URL or base64. Source size is bounded by the bot's overall 256 KiB JSON-file limit. Converted Telegraph nodes must fit within the API limit of 64 KiB of serialized UTF-8 content; the bot checks this size. The page text will be publicly accessible by URL."
+        }
+      }
+    },
+    "explanation_document": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["filename", "text"],
+      "properties": {
+        "filename": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 80,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*\\.(md|txt)$",
+          "not": {"pattern": "[\\r\\n]"},
+          "description": "Simple ASCII filename without a path, ending in .md or .txt."
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 131072,
+          "x-maxUtf8Bytes": 131072,
+          "description": "Text attachment contents in any language. Maximum 131072 bytes when encoded as UTF-8; x-maxUtf8Bytes is an additional limit enforced by the bot."
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"required": ["telegraph"]},
+      "then": {
+        "anyOf": [
+          {"properties": {"question": {"pattern": "\\{\\{telegraph\\.url\\}\\}"}}},
+          {"required": ["description"], "properties": {"description": {"pattern": "\\{\\{telegraph\\.url\\}\\}"}}},
+          {"required": ["explanation"], "properties": {"explanation": {"pattern": "\\{\\{telegraph\\.url\\}\\}"}}},
+          {"properties": {"options": {"contains": {"type": "string", "pattern": "\\{\\{telegraph\\.url\\}\\}"}}}}
+        ]
+      },
+      "else": {
+        "properties": {
+          "question": {"not": {"pattern": "\\{\\{telegraph\\.url\\}\\}"}},
+          "description": {"not": {"pattern": "\\{\\{telegraph\\.url\\}\\}"}},
+          "explanation": {"not": {"pattern": "\\{\\{telegraph\\.url\\}\\}"}},
+          "options": {"items": {"not": {"pattern": "\\{\\{telegraph\\.url\\}\\}"}}}
+        }
+      }
+    },
+    {"if": {"properties": {"options": {"maxItems": 1}}}, "then": {"properties": {"correct_option": {"maximum": 1}}}},
+    {"if": {"properties": {"options": {"maxItems": 2}}}, "then": {"properties": {"correct_option": {"maximum": 2}}}},
+    {"if": {"properties": {"options": {"maxItems": 3}}}, "then": {"properties": {"correct_option": {"maximum": 3}}}},
+    {"if": {"properties": {"options": {"maxItems": 4}}}, "then": {"properties": {"correct_option": {"maximum": 4}}}},
+    {"if": {"properties": {"options": {"maxItems": 5}}}, "then": {"properties": {"correct_option": {"maximum": 5}}}},
+    {"if": {"properties": {"options": {"maxItems": 6}}}, "then": {"properties": {"correct_option": {"maximum": 6}}}},
+    {"if": {"properties": {"options": {"maxItems": 7}}}, "then": {"properties": {"correct_option": {"maximum": 7}}}},
+    {"if": {"properties": {"options": {"maxItems": 8}}}, "then": {"properties": {"correct_option": {"maximum": 8}}}},
+    {"if": {"properties": {"options": {"maxItems": 9}}}, "then": {"properties": {"correct_option": {"maximum": 9}}}},
+    {"if": {"properties": {"options": {"maxItems": 10}}}, "then": {"properties": {"correct_option": {"maximum": 10}}}},
+    {"if": {"properties": {"options": {"maxItems": 11}}}, "then": {"properties": {"correct_option": {"maximum": 11}}}}
+  ]
+}
