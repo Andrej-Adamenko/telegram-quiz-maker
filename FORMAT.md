@@ -15,7 +15,7 @@ Quiz content supports Unicode in any language. Follow the author's language choi
 | `telegraph` | Optional object with exactly `title` and `text`, described below. |
 | `explanation_document` | Optional object with exactly `filename` and `text`, described below. |
 
-Do not add unknown fields or duplicate keys. Strings must contain valid Unicode without disallowed control characters. Required nonempty strings cannot consist only of whitespace. `NaN` and `Infinity` are not allowed. The bot creates an anonymous quiz with one correct answer, no option shuffling, and revoting enabled. These settings are not JSON fields.
+Do not add unknown fields or duplicate keys. Strings must contain valid Unicode without disallowed control characters. Required nonempty strings cannot consist only of whitespace. `NaN` and `Infinity` are not allowed. The bot creates an anonymous quiz with one correct answer, no option shuffling, and revoting disabled. These settings are not JSON fields.
 
 ## MarkdownV2 in Description and Explanation
 

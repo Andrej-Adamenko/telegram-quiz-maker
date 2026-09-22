@@ -178,7 +178,7 @@ def poll_request(quiz: dict, chat_id: int, page_url=None):
         "options": [{"text": option} for option in values["options"]],
         "type": "quiz", "correct_option_ids": [quiz["correct_option"] - 1],
         "is_anonymous": True, "allows_multiple_answers": False,
-        "allows_revoting": True, "shuffle_options": False,
+        "allows_revoting": False, "shuffle_options": False,
         "protect_content": False,
     }
     for key in ("explanation", "description"):

@@ -30,4 +30,4 @@ Description and Explanation always use MarkdownV2, without a mode selector or pl
 
 The bot also supports `explanation_document` with `filename` (`.md` or `.txt`) and `text` for a text attachment, and it can be combined with `telegraph`. This educational template needs only `telegraph`, so omit `explanation_document`.
 
-Do not add other fields. The bot creates an anonymous quiz with one correct answer, no option shuffling, and revoting enabled. Keep option labels and ordering in the full discussion consistent with `options`, and ensure the explanation agrees with `correct_option`.
+Do not add other fields. The bot creates an anonymous quiz with one correct answer, no option shuffling, and revoting disabled. Keep option labels and ordering in the full discussion consistent with `options`, and ensure the explanation agrees with `correct_option`.

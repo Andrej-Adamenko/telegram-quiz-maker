@@ -10,7 +10,7 @@ The bot uses Python 3.12+ and the standard library only. It does not call a mode
 2. Send the file in your bot's private chat. Only the configured owner may create quizzes.
 3. Forward the returned quiz to a channel or Saved Messages. Participants choose an answer and open 💡 to see the explanation.
 
-The bot creates an anonymous quiz with one correct answer, no option shuffling, and revoting enabled. It preserves the author's content and adds no fixed instructions or labels. Sending another JSON file creates another quiz; existing quizzes are not edited.
+The bot creates an anonymous quiz with one correct answer, no option shuffling, and revoting disabled. It preserves the author's content and adds no fixed instructions or labels. Sending another JSON file creates another quiz; existing quizzes are not edited.
 
 ## Quick start
 
