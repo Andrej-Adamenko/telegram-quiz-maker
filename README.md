@@ -91,6 +91,8 @@ Run one process per bot token. Long polling requires outbound HTTPS access to Te
 
 ## Project files
 
+- [AGENTS.md](AGENTS.md): agent instructions for continuing work in a new session.
+- [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md): durable product decisions and implementation context.
 - [bot.py](bot.py): Telegram requests, JSON validation, and durable update handling.
 - [telegraph_pages.py](telegraph_pages.py): article rendering, publication, and caching.
 - [FORMAT.md](FORMAT.md): general authoring contract for people and models.
